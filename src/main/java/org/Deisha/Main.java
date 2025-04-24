@@ -14,7 +14,8 @@ public class Main {
         int expenseID;
         LocalDate expenseDate;
         String expenseDesc;
-        double expenseAmt;
+        double expenseAmt = 0;
+        int count = 0;
 
         System.out.println();
 
@@ -22,18 +23,25 @@ public class Main {
         HashMap<String, Object> expenseData = new HashMap<>();
 
         //Getting user data for expenses
+        System.out.println("Please enter a description: ");
+        expenseDesc = userInput.next();
 
         try{
-            System.out.println("Please enter a description: ");
-            expenseDesc = userInput.next();
+            System.out.println("Please enter the amount: ");
+            expenseAmt = userInput.nextDouble();
+
         }catch (IllegalArgumentException e){
-            e.printStackTrace();
+            System.out.println("Please enter a valid amount");
         }
+
+        expenseDate = LocalDate.now();
+        expenseID = count + 1;
+
         //hash to store data in JSON
-        expenseData.put("expenseID", 453467);
-        expenseData.put("expenseDate", LocalDate.now());
-        expenseData.put("expenseDescription", "Breakfast");
-        expenseData.put("expenseAmount", 4500);
+        expenseData.put("expenseID", expenseID);
+        expenseData.put("expenseDate", expenseDate);
+        expenseData.put("expenseDescription", expenseDesc);
+        expenseData.put("expenseAmount", expenseAmt);
 
 
         //ObjectMapper (Used to convert data between Java objects and JSON)
@@ -48,7 +56,6 @@ public class Main {
         catch (IOException e){
             e.printStackTrace();
         }
-
 
 
 
