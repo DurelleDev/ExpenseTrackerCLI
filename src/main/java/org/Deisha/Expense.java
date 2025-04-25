@@ -1,15 +1,16 @@
 package org.Deisha;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Expense {
     private int expenseID;
-    private Instant expenseDate;
+    private LocalDate expenseDate;
     private String expenseDesc;
     private double expenseAmt;
 
-    public Expense(int expenseID, Instant expenseDate, String expenseDesc, double expenseAmt){
+    public Expense(int expenseID, LocalDate expenseDate, String expenseDesc, double expenseAmt){
 
         this.expenseID = expenseID;
         this.expenseDate = expenseDate;
@@ -20,7 +21,7 @@ public class Expense {
     public int getExpenseID(){
         return expenseID;
     }
-    public Instant getExpenseDate(){
+    public LocalDate getExpenseDate(){
         return expenseDate;
     }
     public String getExpenseDesc(){
