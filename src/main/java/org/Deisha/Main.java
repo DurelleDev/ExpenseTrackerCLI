@@ -38,6 +38,7 @@ public class Main {
         }
 
         expenseDate = LocalDate.now();
+        String expDate = expenseDate.toString();
         expenseID = count + 1;
 
         //hash to store data in JSON
@@ -54,12 +55,13 @@ public class Main {
        try
        {
            //Expense(int expenseID, Instant expenseDate, String expenseDesc, double expenseAmt
-            String jsonString = objectMapper.writeValueAsString(new Expense(expenseID, expenseDate, expenseDesc, expenseAmt));
-
+            String jsonString = objectMapper.writeValueAsString(new Expense(expenseID, expDate, expenseDesc, expenseAmt));
+            ExpenseJsonStorage.storeJson(jsonString);
 
        }
        catch (JsonProcessingException e){
-           e.printStackTrace();
+           //e.printStackTrace();
+           System.out.println(e);
         }
 
 

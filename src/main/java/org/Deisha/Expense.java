@@ -6,11 +6,11 @@ import java.util.Date;
 
 public class Expense {
     private int expenseID;
-    private LocalDate expenseDate;
+    private String expenseDate;
     private String expenseDesc;
     private double expenseAmt;
 
-    public Expense(int expenseID, LocalDate expenseDate, String expenseDesc, double expenseAmt){
+    public Expense(int expenseID, String expenseDate, String expenseDesc, double expenseAmt){
 
         this.expenseID = expenseID;
         this.expenseDate = expenseDate;
@@ -21,7 +21,7 @@ public class Expense {
     public int getExpenseID(){
         return expenseID;
     }
-    public LocalDate getExpenseDate(){
+    public String getExpenseDate(){
         return expenseDate;
     }
     public String getExpenseDesc(){
