@@ -1,21 +1,13 @@
 package org.Deisha;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
 
-        dbFunctions dbFunctions = new dbFunctions();
-        dbFunctions.connectToDb("expensedb", "postgres", "22952");
+        dbFunctionsJson dbFunctionsJson = new dbFunctionsJson();
+        dbFunctionsJson.connectToDb("expensedb", "postgres", "22952");
 
         int expenseID;
         LocalDate expenseDate;
