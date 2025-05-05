@@ -1,4 +1,4 @@
-package org.Deisha;
+package org.Deisha.Json;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
