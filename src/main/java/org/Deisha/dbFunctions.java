@@ -1,18 +1,19 @@
 package org.Deisha;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class dbFunctions {
     private Connection conn = null;
     private String JDBC_NAME;
     private String JDBC_USER;
 
-    public dbFunctions(String JDBC_DBNAME, String JDBC_USER){
+    protected dbFunctions(String JDBC_DBNAME, String JDBC_USER){
         this.JDBC_NAME = JDBC_DBNAME;
         this.JDBC_USER = JDBC_USER;
     }
 
-    public void connectToDb(){
+    protected void connectToDb(){
         Connection connection = null;
 
         try{
@@ -29,7 +30,7 @@ public class dbFunctions {
         this.conn = connection;
     }
 
-    public void displayExpenses(){
+    protected void displayExpenses(){
         Statement statement;
         ResultSet displayResult;
         try{
@@ -51,7 +52,7 @@ public class dbFunctions {
         }
     }
 
-    public void displaySummary(){
+    protected void displaySummary(){
         Statement statement;
         ResultSet results;
         double expenses = 0;
@@ -65,35 +66,64 @@ public class dbFunctions {
                 expenses += results.getDouble("expense_amount");
             }
 
-            System.out.println("Total expenses: R"+expenses);
+            System.out.println(String.format("Total expenses: R%.2f",expenses));
 
         }catch (SQLException e){
             System.out.println(e);
         }
     }
 
-    public void addExpense(String expenseDesc, double expenseAmt, String expenseDate){
+    protected void displaySpecificMonth(int month){
+        Statement statement;
+        LocalDate date = LocalDate.now();
+        int iYear = LocalDate.now().getYear();
+        int iMonth = Integer.parseInt(date.toString().substring(5, 7));
+        double expenses = 0;
+        ResultSet results;
+
+        try{
+            statement = conn.createStatement();
+            String query = String.format("Select * from expenses where expense_date = %d-%02d-", iYear, iMonth);
+            results = statement.executeQuery(query);
+            System.out.println("Success!");
+
+            while(results.next()){
+                expenses += results.getDouble("expense_amount");
+            }
+
+        }
+        catch (Exception e){
+            System.out.println("Failed! (displaySpecificMonth)");
+            System.out.println(e);
+        }
+
+
+
+
+    }
+
+    protected void addExpense(String expenseDesc, double expenseAmt, String expenseDate){
         Statement statement;
 
         try{
             statement = conn.createStatement();
             String query = String.format("INSERT INTO expenses(expense_description, expense_amount, expense_date) VALUES ('%s',"+ expenseAmt +", '%s')", expenseDesc, expenseDate);
             statement.executeUpdate(query);
-            System.out.println("added the expense: "+expenseDesc);
+            System.out.println(String.format("added the expense: %s ",expenseDesc));
         }
         catch (Exception e){
             System.out.println(e);
         }
     }
 
-    public void deleteExpense(String expDesc){
+    protected void deleteExpense(String expDesc){
         Statement statement;
 
         try{
             statement = conn.createStatement();
             String query = String.format("DELETE FROM expenses WHERE expense_description = '%s'", expDesc);
             statement.executeUpdate(query);
-            System.out.println("Successfully deleted: "+ expDesc);
+            System.out.println(String.format("Successfully deleted: %s", expDesc));
         }
         catch (SQLException e)
         {
@@ -101,9 +131,5 @@ public class dbFunctions {
             System.out.println(e);
         }
     }
-
-
-
-
 
 }

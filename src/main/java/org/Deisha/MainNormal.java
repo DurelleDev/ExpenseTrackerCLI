@@ -14,7 +14,15 @@ public class MainNormal {
         db.connectToDb();
 
         Scanner userInput = new Scanner(System.in).useLocale(Locale.US);
-        System.out.println("======================\nWhat do you want to do?\n=======================\nA. Display the Expenses?\nB. Add an expense?\nC. Delete an expense?\nD. Summary of the expenses");
+        System.out.println("======================\n" +
+                "What do you want to do?\n" +
+                "=======================\n" +
+                "A. Display the Expenses?\n" +
+                "B. Add an expense?\n" +
+                "C. Delete an expense?\n" +
+                "D. Summary of the expenses\n" +
+                "E. Summary for a specific month || Have to change type in database");
+
         userChoice = Character.toUpperCase(userInput.nextLine().charAt(0));
         switch(userChoice) {
             case 'A':
@@ -37,6 +45,10 @@ public class MainNormal {
                 break;
             case 'D':
                     db.displaySummary();
+                break;
+            case 'E':
+                System.out.println("What month do you want to display?");
+                db.displaySpecificMonth(userInput.nextInt());
                 break;
 
             default:
