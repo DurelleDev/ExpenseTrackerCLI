@@ -6,18 +6,17 @@ public class dbFunctions {
     private Connection conn = null;
     private String JDBC_NAME;
     private String JDBC_USER;
-    private final String JDBC_PASSWORD;
 
-    public dbFunctions(String JDBC_DBNAME, String JDBC_USER, String JDBC_PASSWORD){
+    public dbFunctions(String JDBC_DBNAME, String JDBC_USER){
         this.JDBC_NAME = JDBC_DBNAME;
         this.JDBC_USER = JDBC_USER;
-        this.JDBC_PASSWORD = JDBC_PASSWORD;
     }
 
     public void connectToDb(){
         Connection connection = null;
 
         try{
+            String JDBC_PASSWORD = "22952";
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + JDBC_NAME, JDBC_USER, JDBC_PASSWORD);
             if (connection != null)
                 System.out.println("Connection Successful!!!");
@@ -71,7 +70,6 @@ public class dbFunctions {
         }catch (SQLException e){
             System.out.println(e);
         }
-
     }
 
     public void addExpense(String expenseDesc, double expenseAmt, String expenseDate){
@@ -102,9 +100,6 @@ public class dbFunctions {
             System.out.println("FAILED (deleteExpense");
             System.out.println(e);
         }
-
-
-
     }
 
 

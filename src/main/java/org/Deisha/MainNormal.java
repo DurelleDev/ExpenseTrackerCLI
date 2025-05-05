@@ -10,7 +10,7 @@ public class MainNormal {
         char userChoice;
         double expenseAmt;
 
-        dbFunctions db = new dbFunctions("expensedb", "postgres", "22952");
+        dbFunctions db = new dbFunctions("expensedb", "postgres");
         db.connectToDb();
 
         Scanner userInput = new Scanner(System.in).useLocale(Locale.US);
