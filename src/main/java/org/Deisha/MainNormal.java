@@ -54,15 +54,5 @@ public class MainNormal {
             default:
                 System.out.println("Invalid choice");
         }
-
-
-
-//        System.out.println("Whats the description of the expense?\n");
-//        expenseDesc = userInput.nextLine();
-//        System.out.println("Whats the Expense amount of "+expenseDesc+": \n");
-//        expenseAmt = userInput.nextDouble();
-//        expenseDate = String.valueOf(LocalDate.now());
-//        db.addExpense(expenseDesc,expenseAmt,expenseDate);
-
     }
 }

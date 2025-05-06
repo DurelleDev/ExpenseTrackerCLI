@@ -96,10 +96,6 @@ public class dbFunctions {
             System.out.println("Failed! (displaySpecificMonth)");
             System.out.println(e);
         }
-
-
-
-
     }
 
     protected void addExpense(String expenseDesc, double expenseAmt, String expenseDate){
