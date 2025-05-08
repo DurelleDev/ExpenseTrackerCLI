@@ -17,7 +17,7 @@ public class dbFunctions {
         Connection connection = null;
 
         try{
-            String JDBC_PASSWORD = "22952";
+            String JDBC_PASSWORD = "";
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + JDBC_NAME, JDBC_USER, JDBC_PASSWORD);
             if (connection != null)
                 System.out.println("Connection Successful!!!");
